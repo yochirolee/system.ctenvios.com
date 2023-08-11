@@ -68,7 +68,7 @@ export const AgencyDetails = ({ agencyId }) => {
 					<AgencyStats />
 				</div>
 			</div>
-			<div className="flex flex-col 2xl:flex-row gap-4 ">
+			<div className="grid lg:grid-flow-col  text-sm gap-4">
 				<AgencyPublicServicesList agency={agency} />
 				<EmployeeList selectedAgency={agency} />
 			</div>

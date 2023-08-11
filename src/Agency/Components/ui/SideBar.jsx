@@ -8,7 +8,7 @@ export const SideBar = () => {
 	const { currentUser } = useAuth();
 
 	return (
-		<div className="hidden min-h-screen lg:block bg-gray-white border-r min-w-[280] md:max-w-[300px]  z-10 w-full overflow-y-auto   sm:max-w-xs sm:min-w-sm sm:ring-gray-900/10">
+		<div className="hidden min-h-screen lg:block bg-gray-white border-r min-w-[250] md:max-w-[260px]  z-10 w-full overflow-y-auto   sm:max-w-xs sm:min-w-sm sm:ring-gray-900/10">
 			<div className="  bg-gray-50">
 				<div className="flex flex-col   justify-center   py-6  items-center border-b border-dotted mx-auto">
 					{<Avatar avatarUrl={currentUser.imageUrl} />}
