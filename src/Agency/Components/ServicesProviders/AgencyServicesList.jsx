@@ -19,7 +19,7 @@ export const AgencyServicesList = ({ selectedAgency }) => {
 		setIsOpenServicesPrices(true);
 	};
 	return (
-		<div className=" lg:col-span-8  ">
+		<div className=" lg:col-span-7  ">
 			{services?.map((service) =>
 				service?.isActive ? (
 					<Card key={service.id}>

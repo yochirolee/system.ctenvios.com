@@ -31,7 +31,7 @@ export const AgencyPublicPrices = () => {
 						</div>
 					</div>
 					{selectedAgency ? (
-						<div className="grid lg:grid-flow-col lg:grid-cols-12  text-sm gap-4">
+						<div className="grid lg:grid-flow-col  text-sm gap-4">
 							<Suspense fallback={<h2>🌀 Loading...</h2>}>
 								<AgencyServicesList selectedAgency={selectedAgency} />
 								<EmployeeList selectedAgency={selectedAgency} />

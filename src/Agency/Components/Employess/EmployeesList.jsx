@@ -33,7 +33,7 @@ export default function EmployeeList({ selectedAgency }) {
 	};
 	if (isError) return <div>Hubo un error</div>;
 	return (
-		<div className="lg:col-span-4 ">
+		<div className="lg:col-span-5 ">
 			<Card>
 				<div className="flex  justify-between border-b pb-2">
 					<h3 className="text-base font-semibold leading-7 text-gray-900">Empleados</h3>
