@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import EmployessRolesSelect from "./EmployeesRolesSelect";
+import { useCreateEmployee, useUpdateEmployee } from "../../Hooks/useEmployees";
 
 const postEmployee = async (employee) => {
 	console.log(employee, "employee");
@@ -56,11 +57,7 @@ export default function EmployeeForm({
 }) {
 	if (!selectedAgency) return null;
 
-	const [pendingVerification, setPendingVerification] = useState(false);
-	const [code, setCode] = useState("");
 	const [selectedRole, setSelectedRole] = useState(null);
-	const [userToCreate, setUserToCreate] = useState(null);
-	const [isVerifying, setIsVerifying] = useState(false);
 	const [errorMessage, setErrorMessage] = useState(null);
 
 	const {
@@ -71,30 +68,17 @@ export default function EmployeeForm({
 		formState: { errors },
 	} = useForm();
 
-	const queryClient = useQueryClient();
-	const createEmployeeMutation = useMutation({
-		mutationFn: (newEmployee) => postEmployee(newEmployee),
-		onSuccess: () => {
-			queryClient.invalidateQueries("fetchEmployeesByAgencyId");
-			if (!createEmployeeMutation.isError) setIsOpen(false);
-		},
-	});
+	const createEmployeeMutation = useCreateEmployee(setIsOpen);
 
-	const updateEmployeeMutation = useMutation({
-		mutationFn: (employee) => updateEmployee(employee),
-		onSuccess: () => {
-			queryClient.invalidateQueries("fetchEmployeesByAgencyId");
-			if (!updateEmployeeMutation.isError) setIsOpen(false);
-		},
-	});
-
+	const updateEmployeeMutation = useUpdateEmployee(setIsOpen);
 	const onSubmit = async (data) => {
 		data.roleId = selectedRole?.id;
 		data.agencyId = selectedAgency.id;
 
 		if (isEditing) {
 			data.id = selectedEmployee.id;
-			(data.roleId = selectedRole?.id), updateEmployeeMutation.mutate(data);
+			data.roleId = selectedRole?.id;
+			updateEmployeeMutation.mutate(data);
 			return;
 		}
 
@@ -106,39 +90,6 @@ export default function EmployeeForm({
 		}
 	};
 
-	// This verifies the user using email code that is delivered.
-	/* 	const onPressVerify = async (e) => {
-		e.preventDefault();
-
-		if (!isLoaded) {
-			return;
-		}
-
-		try {
-			const completeSignUp = await signUp.attemptEmailAddressVerification({
-				code,
-			});
-			if (completeSignUp.status !== "complete") {
-			
-				console.log(JSON.stringify(completeSignUp, null, 2));
-			}
-			if (completeSignUp.status === "complete") {
-				const newUser = userToCreate;
-				newUser.id = completeSignUp.createdUserId;
-				console.log(userToCreate, newUser, completeSignUp, "user to create");
-
-				createEmployeeMutation.mutate(newUser);
-
-				setPendingVerification(false);
-				setIsOpen(false);
-			}
-		} catch (err) {
-			console.log("rrror");
-			console.error(JSON.stringify(err, null, 2));
-			setErrorMessage(err.errors[0].longMessage);
-		}
-	};
- */
 	useEffect(() => {
 		if (isEditing && selectedEmployee) {
 			reset(selectedEmployee);
@@ -254,7 +205,10 @@ export default function EmployeeForm({
 								</label>
 								<div className="mt-2">
 									<input
-										{...register("password", !isEditing ? { required: "El Email es Requerido" } : {})}
+										{...register(
+											"password",
+											!isEditing ? { required: "El Email es Requerido" } : {},
+										)}
 										id="password"
 										name="password"
 										type="password"
@@ -323,11 +277,11 @@ export default function EmployeeForm({
 					<button
 						type="submit"
 						disabled={
-							createEmployeeMutation.isLoading || updateEmployeeMutation.isLoading || isVerifying
+							createEmployeeMutation.isLoading || updateEmployeeMutation.isLoading 
 						}
 						className="rounded-md bg-blue-600 w-32 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
 					>
-						{createEmployeeMutation.isLoading || updateEmployeeMutation.isLoading || isVerifying ? (
+						{createEmployeeMutation.isLoading || updateEmployeeMutation.isLoading  ? (
 							<EllipsisHorizontalIcon className="animate-pulse mx-auto h-5 w-5 text-white " />
 						) : (
 							"Guardar"

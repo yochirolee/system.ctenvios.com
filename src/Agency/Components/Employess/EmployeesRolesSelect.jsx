@@ -1,17 +1,11 @@
 import { useQuery } from "react-query";
-import axios from "axios";
-import { Fragment, useState } from "react";
+import { Fragment, } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-
-const getRoles = async () => {
-	const { data } = await axios.get("http://localhost:3001/api/v1/roles");
-	console.log(data, "roles");
-	return data;
-};
+import apiServices from "../../Api/apiServices";
 
 export default function EmployessRolesSelect({ selected, setSelected }) {
-	const { data: roles, isLoading, isError } = useQuery("fetchRoles", () => getRoles());
+	const { data: roles, isLoading, isError } = useQuery("fetchRoles", ()=>apiServices.roles.getRoles());
 
 	if (isLoading) return <div>Cargando...</div>;
 	if (isError) return <div>Hubo un error</div>;

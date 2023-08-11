@@ -137,10 +137,31 @@ const apiServices = {
 				console.log(error);
 			}
 		},
+		createEmployee: async (newEmployee) => {
+			if (!newEmployee) throw new Error("newEmployee is required");
+			const { data } = await axios.post("/employees", newEmployee);
+			return data;
+		},
+		updateEmployee: async (employee) => {
+			if (!employee) throw new Error("employee is required");
+			const { data } = await axios.put(`/employees/${employee.id}`, employee);
+			return data;
+		},
+		deleteEmployee: async (id) => {
+			if (!id) throw new Error("id is required");
+			const { data } = await axios.delete(`/employees/${id}`);
+			return data;
+		},
 	},
 	productsCategories: {
 		getProductsCategories: async () => {
 			const { data } = await axios.get("/productsCategories");
+			return data;
+		},
+	},
+	roles: {
+		getRoles: async () => {
+			const { data } = await axios.get("/roles");
 			return data;
 		},
 	},

@@ -2,7 +2,7 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useMutation, useQueryClient } from "react-query";
-import { useClerk, useUser } from "@clerk/clerk-react";
+import { useDeleteEmployee } from "../../Hooks/useEmployees";
 
 const deleteEmployee = async (employee) => {
 	if (!employee) throw new Error({ message: "Por Favor ingrese los datos" });
@@ -24,27 +24,15 @@ const deleteEmployee = async (employee) => {
 
 export default function DeleteEmployeeConfirmModal({ isOpen, setIsOpen, employee }) {
 	if (!employee) return;
-	if (!employee?.id) setIsOpen(false);
 
-	const queryClient = useQueryClient();
-
-	const deleteEmployeeMutation = useMutation({
-		mutationFn: (employee) => deleteEmployee(employee),
-		onSuccess: () => {
-			queryClient.invalidateQueries("fetchEmployeesByAgencyId");
-		},
-	});
+	const deleteEmployeeMutation = useDeleteEmployee(setIsOpen);
 
 	const cancelButtonRef = useRef(null);
 
 	const handleDelete = (e) => {
 		e.preventDefault();
 		console.log("delete", employee.id);
-		deleteEmployeeMutation.mutate(employee);
-		if (deleteEmployeeMutation.isSuccess) setIsOpen(false);
-		console.log(deleteEmployeeMutation.isSuccess, "isSuccess");
-		console.log(deleteEmployeeMutation.isError, "isError");
-		console.log(deleteEmployeeMutation.error, "data");
+		deleteEmployeeMutation.mutate(employee.id);
 	};
 
 	return (

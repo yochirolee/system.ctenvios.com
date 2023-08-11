@@ -7,4 +7,5 @@ export const queryKeys = {
 	fetchServicesProviders: "fetchServicesProviders",
 	fetchServicesPrices: "fetchServicesPrices",
 	fetchServicesPricesByAgencyId: "fetchServicesPricesByAgencyId",
+	fetchEmployeesByAgencyId: "fetchEmployeesByAgencyId",
 };
