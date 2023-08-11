@@ -2,10 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { SignInPage } from "../Auth/Pages/SignInPage";
 import { useSession } from "@clerk/clerk-react";
 import { AgencyRoutes } from "../Agency/Routes/AgencyRoutes";
-import { useAppStore } from "../Store/AppStore";
-import { useEffect } from "react";
-import { shallow } from "zustand/shallow";
-import axios from "axios";
 
 export const RouterApp = () => {
 	const { session, isLoaded } = useSession();

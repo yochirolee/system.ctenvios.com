@@ -4,12 +4,10 @@ import {
 	DocumentCheckIcon,
 	HomeIcon,
 } from "@heroicons/react/24/outline";
-import { React } from "react";
+import { Fragment, React } from "react";
 import { Link } from "react-router-dom";
-import { useAppStore } from "../../../Store/AppStore";
 
-export const Links = () => {
-	const [currentUser] = useAppStore((state) => [state.currentUser]);
+export const Links = ({ currentUser }) => {
 	return (
 		<div className="space-y-2 py-6  group-hover:bg-white">
 			<li className="group -mx-3 flex gap-4 items-center rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 ">
@@ -47,7 +45,7 @@ export const Links = () => {
 						to="/providers"
 						className=" block  text-base font-semibold leading-7 text-gray-900 "
 					>
-						Proveedores y Servicios
+						Ajustes
 					</Link>
 				</li>
 			) : null}

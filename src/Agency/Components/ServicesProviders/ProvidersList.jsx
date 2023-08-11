@@ -33,7 +33,7 @@ export default function ProvidersList() {
 
 	return (
 		<>
-			<div className="flex items-center my-2  justify-between ">
+			<div className="flex items-center my-2 mt-8 justify-between ">
 				<h1 className="text-lg font-bold">Proveedores y Servicios</h1>
 
 				<Button icon={PlusCircleIcon} onClick={() => setIsOpenProviderForm(true)}>

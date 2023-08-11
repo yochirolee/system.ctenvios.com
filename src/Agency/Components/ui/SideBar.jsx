@@ -2,12 +2,10 @@ import { React } from "react";
 import { Links } from "./Links";
 import Avatar from "./Avatar";
 import { UserIcon } from "@heroicons/react/24/outline";
-import { useAppStore } from "../../../Store/AppStore";
-import { shallow } from "zustand/shallow";
+import { useAuth } from "../../../Auth/Hooks/useAuth";
 
 export const SideBar = () => {
-	const [currentUser] = useAppStore((state) => [state.currentUser], shallow);
-
+	const { currentUser } = useAuth();
 
 	return (
 		<div className="hidden min-h-screen lg:block bg-gray-white border-r min-w-[280] md:max-w-[300px]  z-10 w-full overflow-y-auto   sm:max-w-xs sm:min-w-sm sm:ring-gray-900/10">
@@ -24,7 +22,7 @@ export const SideBar = () => {
 				</div>
 			</div>
 			<div className="-my-6 px-6 divide-y mt-2 divide-gray-500/10">
-				<Links />
+				<Links currentUser={currentUser} />
 			</div>
 		</div>
 	);

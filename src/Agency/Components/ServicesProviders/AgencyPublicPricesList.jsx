@@ -16,9 +16,9 @@ export const AgencyPublicPricesList = ({ servicesPrices }) => {
 	};
 
 	return (
-		<div className="xl:col-span-8  pb-4 ">
-			<Table>
-				<TableHead className="my-0 py-0 bg-gray-100">
+		<div className="xl:col-span-8  py-4  ">
+			<Table className="rounded-lg  border">
+				<TableHead className="my-0 py-0 ">
 					<TableRow className="text-xs">
 						<TableHeaderCell>Tarifa</TableHeaderCell>
 						<TableHeaderCell>Tipo de Venta</TableHeaderCell>

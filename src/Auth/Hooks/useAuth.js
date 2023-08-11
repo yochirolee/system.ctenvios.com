@@ -1,17 +1,14 @@
 import { useSession, useSignIn } from "@clerk/clerk-react";
-import { useAppStore } from "../../Store/AppStore";
 import apiServices from "../../Agency/Api/apiServices";
 import { useState } from "react";
-import { shallow } from "zustand/shallow";
 
 export const useAuth = () => {
 	const { signIn, setActive, isLoaded } = useSignIn();
 	const [isLoading, setIsLoading] = useState(false);
 	const { session } = useSession();
 
-	const [currentUser, setCurrentUser] = useAppStore(
-		(state) => [state.currentUser, state.setCurrentUser],
-		shallow,
+	const [currentUser, setCurrentUser] = useState(
+		localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {},
 	);
 	const login = async (email, password) => {
 		try {
@@ -27,6 +24,7 @@ export const useAuth = () => {
 
 				loggedEmployee.imageUrl = result.userData.imageUrl;
 				loggedEmployee.sessionId = result?.createdSessionId;
+				localStorage.setItem("user", JSON.stringify(loggedEmployee));
 				setCurrentUser(loggedEmployee);
 			}
 			setIsLoading(false);

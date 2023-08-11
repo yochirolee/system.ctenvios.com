@@ -48,15 +48,7 @@ export const useFetchEmployeesByAgencyId = (id) => {
 	);
 };
 
-export const useFetchServicesByAgency = (id) => {
-	return useQuery(
-		[queryKeys.fetchServicesByAgencyId, id],
-		() => apiServices.agencies.getServicesByAgencyId(id),
-		{
-			enabled: !!id,
-		},
-	);
-};
+
 
 export const useFetchAgencyLoggedEmployee = (email) => {
 	return useQuery(

@@ -6,6 +6,14 @@ export const useFetchServices = () => {
 	return useQuery([queryKeys.fetchServices], () => apiServices.services.getServices());
 };
 
+export const useFetchServicesByAgencyId = (id) => {
+	return useQuery(
+		[queryKeys.fetchServicesByAgencyId, id],
+		() => apiServices.services.getServicesByAgencyId(id),
+		{ enabled: !!id },
+	);
+};
+
 export const useCreateService = (setIsOpen) => {
 	const queryClient = useQueryClient();
 	return useMutation({

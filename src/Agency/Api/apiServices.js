@@ -36,11 +36,6 @@ const apiServices = {
 			return data;
 		},
 
-		getServicesByAgencyId: async (id) => {
-			const { data } = await axios.get(`/services/getByAgencyId/${id}`);
-			return data;
-		},
-
 		getServicesProvidersByAgencyId: async (id) => {
 			const { data } = await axios.get(`/servicesProviders/getByAgencyId/${id}`);
 			return data;
@@ -55,11 +50,19 @@ const apiServices = {
 			const { data } = await axios.get("/services");
 			return data;
 		},
+
+		getServicesByAgencyId: async (id) => {
+			if (!id) throw new Error("id is required");
+			const { data } = await axios.get(`/services/getByAgencyId/${id}`);
+			return data;
+		},
+
 		createService: async (newService) => {
 			if (!newService) throw new Error("newService is required");
 			const { data } = await axios.post("/services", newService);
 			return data;
 		},
+
 		updateService: async (service) => {
 			if (!service) throw new Error("service is required");
 			service.isActive = !!service.isActive;

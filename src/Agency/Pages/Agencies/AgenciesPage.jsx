@@ -1,14 +1,8 @@
-import { React, useState } from "react";
-import AgenciesSearchSelect from "../../Components/Agencies/AgenciesSearchSelect";
-import SlideOver from "../../Components/ui/SlideOver";
-import AgencyForm from "../../Components/Agencies/AgencyForm";
+import { useAuth } from "../../../Auth/Hooks/useAuth";
 import { AgencyDetails } from "../../Components/Agencies/AgencyDetails";
-import { Button } from "@tremor/react";
-import { BuildingOfficeIcon } from "@heroicons/react/24/outline";
-import { useAppStore } from "../../../Store/AppStore";
 
 export const AgenciesPage = () => {
-	const currentUser = useAppStore((state) => state.currentUser);
+	const { currentUser } = useAuth();
 
 	return (
 		<div>

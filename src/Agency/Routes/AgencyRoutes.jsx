@@ -3,12 +3,11 @@ import { RootLayout } from "../Layouts/RootLayout";
 import { InvoicesPage } from "../Pages/Invoices/InvoicesPage";
 import { DashboardPage } from "../Pages/Dashboard/DashboardPage";
 import { AgenciesPage } from "../Pages/Agencies/AgenciesPage";
-import { ProvidersAndServicesPage } from "../Pages/ProvidersAndServices/ProvidersAndServicesPage";
-import { useAppStore } from "../../Store/AppStore";
-import { shallow } from "zustand/shallow";
+import { Settings } from "../Pages/Settings/Settings";
+import { useAuth } from "../../Auth/Hooks/useAuth";
 
 export const AgencyRoutes = () => {
-	const [currentUser] = useAppStore((state) => [state.currentUser], shallow);
+	const { currentUser } = useAuth();
 
 	return (
 		<>
@@ -19,7 +18,7 @@ export const AgencyRoutes = () => {
 					<Route path="/invoices" element={<InvoicesPage />} />
 					<Route path="/agencies" element={<AgenciesPage />} />
 					{currentUser?.role?.name === "Administrator" ? (
-						<Route path="/providers" element={<ProvidersAndServicesPage />} />
+						<Route path="/providers" element={<Settings />} />
 					) : null}
 					<Route path="/*" element={<Navigate to="/" />} />
 				</Routes>
