@@ -73,7 +73,6 @@ export const InvoiceDetails = () => {
 							<PaymentHistory invoice={invoice} />
 						)}
 					</div>
-					<InvoiceHistory />
 				</div>
 			</div>
 		</>
