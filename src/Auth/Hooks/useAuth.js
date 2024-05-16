@@ -1,15 +1,17 @@
 import { useSession, useSignIn } from "@clerk/clerk-react";
 import apiServices from "../../Agency/Api/apiServices";
 import { useState } from "react";
+import { useAppStore } from "../../Store/AppStore";
 
 export const useAuth = () => {
 	const { signIn, setActive, isLoaded } = useSignIn();
 	const [isLoading, setIsLoading] = useState(false);
 	const { session } = useSession();
+	const [currentUser, setCurrentUser] = useAppStore((state) => [
+		state.currentUser,
+		state.setCurrentUser,
+	]);
 
-	const [currentUser, setCurrentUser] = useState(
-		localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {},
-	);
 	const login = async (email, password) => {
 		try {
 			setIsLoading(true);
@@ -18,6 +20,7 @@ export const useAuth = () => {
 				identifier: email,
 				password,
 			});
+
 			if (result.status === "complete" && !!data.id) {
 				await setActive({ session: result.createdSessionId });
 				const loggedEmployee = data;

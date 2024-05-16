@@ -1,38 +1,32 @@
 import { useState } from "react";
 import { Dialog, Disclosure } from "@headlessui/react";
-import {
-	ArrowDownTrayIcon,
-	Bars3Icon,
-	XMarkIcon,
-	BellIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowDownTrayIcon, Bars3Icon, XMarkIcon, BellIcon } from "@heroicons/react/24/outline";
 import { Links } from "./Links";
 import { useAuth } from "../../../Auth/Hooks/useAuth";
+import { Search, SearchIcon } from "lucide-react";
+import { ModeToggle } from "./theme-toggle";
+import { Input } from "@/components/ui/input";
 
 export default function NavBar({ session }) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const { logout } = useAuth();
 
 	return (
-		<header className="bg-white">
+		<header className="bg-white print:hidden dark:bg-gray-900 dark:text-white">
 			<nav
-				className="mx-auto flex  items-center justify-between p-3 border-b lg:px-8"
+				className="mx-auto flex  items-center justify-between p-2 border-b lg:px-8"
 				aria-label="Global"
 			>
 				<div className="flex lg:flex-1">
 					<a href="#" className="-m-1.5 p-1.5">
 						<span className="sr-only">CTEnvios</span>
-						<img
-							className="h-8 w-auto"
-							src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-							alt=""
-						/>
+						<img className="h-10 w-auto object-scale-down   " src="/ctelogo.png" alt="" />
 					</a>
 				</div>
 				<div className="flex lg:hidden">
 					<button
 						type="button"
-						className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+						className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-white"
 						onClick={() => setMobileMenuOpen(true)}
 					>
 						<span className="sr-only">Open main menu</span>
@@ -41,20 +35,30 @@ export default function NavBar({ session }) {
 				</div>
 
 				<div className="hidden lg:flex lg:flex-1 lg:justify-end">
-					{session ? (
+					{true ? (
 						<div className="inline-flex gap-4 items-center">
+							<div className="relative ml-auto flex-1 md:grow-0">
+								<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+								<Input
+									type="search"
+									placeholder="Search..."
+									className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+								/>
+							</div>
+
 							<a className="relative cursor-pointer">
-								<BellIcon className="w-6 h-6 text-gray-500" />
+								<BellIcon className="w-6 h-6 text-gray-500 dark:text-white" />
 								<span className="absolute -top-1 left-2.5  w-4 h-4 rounded-full text-center  font-semibold text-xs bg-red-500 text-white">
 									0
 								</span>
 							</a>
+							<ModeToggle />
 							<a
 								onClick={() => {
 									logout();
 								}}
 								href="#"
-								className="text-sm font-semibold leading-6 text-gray-500"
+								className="text-sm font-semibold leading-6 text-gray-500 dark:text-white"
 							>
 								<ArrowDownTrayIcon className="w-6 h-6 -rotate-90" />
 							</a>

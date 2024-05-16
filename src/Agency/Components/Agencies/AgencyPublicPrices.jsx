@@ -1,6 +1,6 @@
 import { React, Suspense, useState } from "react";
 import AgenciesSearchSelect from "./AgenciesSearchSelect";
-import { Button } from "@tremor/react";
+import { Button } from "../ui/button";
 import { AgencyServicesList } from "../ServicesProviders/AgencyServicesList";
 import EmployeeList from "../Employess/EmployeesList";
 import SlideOver from "../ui/SlideOver";
@@ -24,19 +24,22 @@ export const AgencyPublicPrices = () => {
 							/>
 						</div>
 
-						<div className="inline-flex gap-4">
-							<Button onClick={() => setIsOpen(true)} icon={BuildingOfficeIcon}>
-								Crear Agencia
-							</Button>
-						</div>
+						<Button className='flex gap-2' onClick={() => setIsOpen(true)}>
+							<BuildingOfficeIcon className="h-4 w-4" />
+							Crear Agencia
+						</Button>
 					</div>
 					{selectedAgency ? (
-						<div className="grid lg:grid-flow-col  text-sm gap-4">
-							<Suspense fallback={<h2>🌀 Loading...</h2>}>
-								<AgencyServicesList selectedAgency={selectedAgency} />
-								<EmployeeList selectedAgency={selectedAgency} />
-							</Suspense>
-						</div>
+						<Suspense fallback={<h2>🌀 Loading...</h2>}>
+							<div className="lg:grid  lg:grid-cols-12  text-sm gap-4">
+								<div className=" lg:col-span-8">
+									<AgencyServicesList selectedAgency={selectedAgency} />
+								</div>
+								<div className="lg:col-span-4">
+									<EmployeeList selectedAgency={selectedAgency} />
+								</div>
+							</div>
+						</Suspense>
 					) : (
 						""
 					)}

@@ -13,7 +13,7 @@ let newProduct = {
 	description: "",
 	weight: 0,
 	publicPrice: 0,
-	isSellByPounds: false,
+	isSellByPounds: false ,
 };
 
 export const NewProductRow = ({ selectedService, product, onChange, onRemove }) => {
@@ -71,7 +71,7 @@ export const NewProductRow = ({ selectedService, product, onChange, onRemove }) 
 
 			<TableCell>
 				{selectedServicePrice?.isSellByPounds ? (
-					<div>
+					<div className="inline-flex items-center gap-1">
 						<input
 							type="number"
 							name="weight"
@@ -79,10 +79,12 @@ export const NewProductRow = ({ selectedService, product, onChange, onRemove }) 
 							step="0.01"
 							onChange={(e) => handleInputChange(e)}
 							className="block w-[80px] px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-						/>
+						/> <span>Lbs</span>
 					</div>
 				) : (
-					""
+					<div>
+						{selectedServicePrice?.weight} Lbs
+					</div>
 				)}
 			</TableCell>
 			<TableCell>{selectedServicePrice?.publicPrice}</TableCell>

@@ -9,12 +9,13 @@ export const RouterApp = () => {
 
 	return (
 		<Routes>
-			{session?.user ? (
+			{/* {session?.user ? (
 				<Route path="*" element={<AgencyRoutes />} />
 			) : (
 				<Route path="/login" element={<SignInPage />} />
 			)}
-
+ */}
+			<Route path="*" element={<AgencyRoutes />} />
 			<Route path="/*" element={<Navigate to="/login" />} />
 			{/* <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
 			<Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />

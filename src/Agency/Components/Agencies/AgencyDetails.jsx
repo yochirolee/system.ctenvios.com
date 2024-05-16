@@ -68,9 +68,13 @@ export const AgencyDetails = ({ agencyId }) => {
 					<AgencyStats />
 				</div>
 			</div>
-			<div className="grid lg:grid-flow-col  text-sm gap-4">
-				<AgencyPublicServicesList agency={agency} />
-				<EmployeeList selectedAgency={agency} />
+			<div className="lg:grid  lg:grid-cols-10  text-sm gap-4">
+				<div className=" lg:col-span-6">
+					<AgencyPublicServicesList agency={agency} />
+				</div>
+				<div className="lg:col-span-4">
+					<EmployeeList selectedAgency={agency} />
+				</div>
 			</div>
 			<SlideOver isOpen={showSlideOver} setIsOpen={setShowSlideOver} title="Agencia">
 				<AgencyForm selectedAgency={agency} setIsOpen={setShowSlideOver} isEditing={true} />

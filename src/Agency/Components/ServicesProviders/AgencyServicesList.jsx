@@ -1,16 +1,17 @@
 import { React, useState } from "react";
-import { Button, Card } from "@tremor/react";
-import { CircleStackIcon } from "@heroicons/react/24/outline";
+import { Card } from "../../../components/ui/card";
+import { CircleStackIcon, CurrencyDollarIcon } from "@heroicons/react/24/outline";
 import SlideOver from "../ui/SlideOver";
-import ServicePriceForm from "./ServicePriceForm";
+import ServicePriceForm from "./_ServicePriceForm";
 import { AgencyServicesPricesList } from "./AgencyServicesPricesList";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
-import { useFetchServicesByAgencyId } from "../../Hooks/useServices";
+import { useFetchServices } from "../../Hooks/useServices";
 import { Banner } from "../Banner/Banner";
 
 export const AgencyServicesList = ({ selectedAgency }) => {
-	const { data: services } = useFetchServicesByAgencyId(selectedAgency?.id);
+	const { data: services } = useFetchServices();
 
+	console.log(services, "services");
 	const [isOpenServicesPrices, setIsOpenServicesPrices] = useState(false);
 	const [selectedService, setSelectedService] = useState(null);
 
@@ -18,35 +19,40 @@ export const AgencyServicesList = ({ selectedAgency }) => {
 		setSelectedService(service);
 		setIsOpenServicesPrices(true);
 	};
+
+	console.log(services, "services");
 	return (
 		<div className=" lg:col-span-7  ">
 			{services?.map((service) =>
 				service?.isActive ? (
-					<Card key={service.id}>
-						<div className="flex items-center justify-between border-b py-1">
+					<Card key={service.id} className="p-4">
+						<div className="flex items-center justify-between  border-b pb-2">
 							<div>
-								<h3 className="font-semibold text-gray-600 ">{service.name}</h3>
-								<p className="text-sm text-gray-500">{service.description}</p>
+								<h3 className="font-semibold text-gray-600 ">{service?.name}</h3>
+								<p className="text-sm text-gray-500">{service?.description}</p>
 							</div>
 
-							<Button
-								disabled={services?.length == 0}
+							<span
 								onClick={() => handleCreateNewServicePrice(service)}
-								icon={CircleStackIcon}
-								iconPosition="right"
-								variant="secondary"
-								size="xs"
-								className="h-8"
+								className=" inline-flex items-center  cursor-pointer  gap-2 bg-gray-700  text-white p-2 rounded-md border hover:bg-gray-800"
 							>
-								Crear Tarifa
-							</Button>
+								<CurrencyDollarIcon className="h-5 w-5" />
+								<span className="hidden lg:block text-xs">Crear Tarifa</span>
+							</span>
+							
 						</div>
 
-						{service.servicesPrices.length === 0 ? (
-							<Banner title={"No existen tarifas"} message={"Para esta Agencia"}/>
+						{service.servicesPrices?.length === 0 ? (
+							<Banner title={"No existen tarifas"} message={"Para esta Agencia"} />
 						) : (
-							<AgencyServicesPricesList servicesPrices={service.servicesPrices} />
+							<AgencyServicesPricesList
+								servicesPrices={service.providerFares}
+								selectedService={selectedService}
+								selectedAgency={selectedAgency}
+								setIsOpen={setIsOpenServicesPrices}
+							/>
 						)}
+						<div>{/* <ServicesCategories service={service} /> */}</div>
 					</Card>
 				) : (
 					<div className="flex gap-4 items-center">

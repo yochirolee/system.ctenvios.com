@@ -31,7 +31,7 @@ export const AgencyPublicPricesList = ({ servicesPrices }) => {
 
 				<TableBody className="text-xs">
 					{servicesPrices?.map((servicePrice) => (
-						<TableRow key={servicePrice.id}>
+						<TableRow className="my-2" key={servicePrice.id}>
 							<TableCell>{servicePrice.name}</TableCell>
 							<TableCell>
 								{servicePrice.isSellByPounds ? (

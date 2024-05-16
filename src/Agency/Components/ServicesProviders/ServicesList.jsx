@@ -4,6 +4,7 @@ import { PaperAirplaneIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useDeleteService, useUpdateService } from "../../Hooks/useServices";
 
 export const ServicesList = ({ services }) => {
+	console.log(services, "services")
 	if (!services) return;
 
 	const deleteMutation = useDeleteService();

@@ -5,7 +5,6 @@ import apiServices from "../../Agency/Api/apiServices";
 import { useAuth } from "../Hooks/useAuth";
 
 export const SignInForm = () => {
-
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isError, setIsError] = useState(null);
@@ -27,16 +26,9 @@ export const SignInForm = () => {
 
 	return (
 		<>
-			<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+			<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8">
 				<div className="sm:mx-auto sm:w-full sm:max-w-sm">
-					<img
-						className="mx-auto h-10 w-auto"
-						src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
-						alt="CTEnvios"
-					/>
-					<h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-						Sign in to your account
-					</h2>
+					<img className="mx-auto h-20 w-auto" src="/ctelogo.png" alt="CTEnvios" />
 				</div>
 
 				<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -102,10 +94,10 @@ export const SignInForm = () => {
 						</div>
 					</form>
 
-					<p className="mt-10 text-center text-sm text-gray-500">
-						Not a member?{" "}
-						<a href="#" className="font-semibold leading-6 text-blue-600 hover:text-blue-500">
-							Start a 14 day free trial
+					<p className="mt-10 border p-4 rounded-lg bg-slate-100 text-center text-sm text-slate-500">
+						Eres Agencia y quieres enviar con CTEnvios?
+						<a href="#" className="font-semibold leading-6 px-4 text-slate-700 hover:text-slate-600">
+							Llamanos 305-851-3004
 						</a>
 					</p>
 				</div>

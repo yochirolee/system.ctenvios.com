@@ -1,53 +1,11 @@
-import { EllipsisHorizontalIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
+import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "react-query";
 import EmployessRolesSelect from "./EmployeesRolesSelect";
 import { useCreateEmployee, useUpdateEmployee } from "../../Hooks/useEmployees";
 
-const postEmployee = async (employee) => {
-	console.log(employee, "employee");
-	if (!employee) throw new Error({ message: "Por Favor ingrese los datos" });
-	const res = await fetch("http://localhost:3001/api/v1/employees", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(employee),
-	});
 
-	if (!res.ok) {
-		if (res.status === 404) {
-			throw new Error("No se pudo crear el empleado, por favor intente de nuevo");
-		}
-		const error = await res.json();
-		const message = error.meta ? error?.meta?.target[0] : error.message;
-		throw new Error(message);
-	}
-	return await res.json();
-};
-
-const updateEmployee = async (employee) => {
-	if (!employee) throw new Error({ message: "Por Favor ingrese los datos" });
-	const res = await fetch("http://localhost:3001/api/v1/employees/" + employee.id, {
-		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(employee),
-	});
-
-	if (!res.ok) {
-		if (res.status === 404) {
-			throw new Error("No se pudo actualizar el empleado, por favor intente de nuevo");
-		}
-		const error = await res.json();
-		const message = error.meta ? error?.meta?.target[0] : error.message;
-		throw new Error(message);
-	}
-	return await res.json();
-};
 
 export default function EmployeeForm({
 	setIsOpen,
@@ -83,7 +41,7 @@ export default function EmployeeForm({
 		}
 
 		try {
-			const newEmployee = createEmployeeMutation.mutate(data);
+			createEmployeeMutation.mutate(data);
 		} catch (err) {
 			console.error(JSON.stringify(err, null, 2), "uknow error");
 			//setErrorMessage(err.errors[0].longMessage);

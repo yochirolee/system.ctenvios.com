@@ -7,12 +7,13 @@ import EmployeeForm from "./EmployeeForm";
 import DeleteEmployeeConfirmModal from "./EmployeeDeleteConfirmModal";
 import { useSession } from "@clerk/clerk-react";
 import { Banner } from "../Banner/Banner";
+import { Spinner } from "../ui/Spinner";
 
 export default function EmployeeList({ selectedAgency }) {
 	if (!selectedAgency) return <div>Seleccione una agencia</div>;
 	const [open, setOpen] = useState(false);
 	const [isEditing, setIsEditing] = useState(false);
-	const { data: employees, isError } = useFetchEmployeesByAgencyId(selectedAgency.id);
+	const { data: employees, isLoading, isError } = useFetchEmployeesByAgencyId(selectedAgency.id);
 	const [selectedEmployee, setSelectedEmployee] = useState(null);
 	const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
 
@@ -31,17 +32,48 @@ export default function EmployeeList({ selectedAgency }) {
 		setSelectedEmployee(employee);
 		setShowDeleteConfirmModal(true);
 	};
+	if (isLoading) {
+		return (
+			<div class="mx-auto animate-pulse  sm:px-6 lg:px-8">
+				<div class=" sm:px-0">
+					<div class="relative  h-96 overflow-hidden rounded-xl border border-dashed border-gray-400 opacity-75">
+						<svg class="absolute inset-0 h-full w-full stroke-gray-900/10" fill="none">
+							<defs>
+								<pattern
+									id="pattern-d09edaee-fc6a-4f25-aca5-bf9f5f77e14a"
+									x="0"
+									y="0"
+									width="10"
+									height="10"
+									patternUnits="userSpaceOnUse"
+								>
+									<path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
+								</pattern>
+							</defs>
+							<rect
+								stroke="none"
+								fill="url(#pattern-d09edaee-fc6a-4f25-aca5-bf9f5f77e14a)"
+								width="100%"
+								height="100%"
+							></rect>
+						</svg>
+					</div>
+				</div>
+			</div>
+		);
+	}
 	if (isError) return <div>Hubo un error</div>;
 	return (
-		<div className="lg:col-span-5 ">
+		<div>
 			<Card>
-				<div className="flex  justify-between border-b pb-2">
+				<div className="flex  justify-between items-center border-b pb-2">
 					<h3 className="text-base font-semibold leading-7 text-gray-900">Empleados</h3>
 					<span
 						onClick={() => handleCreateEmployee()}
-						className=" p-1 rounded-full text-gray-500 border hover:bg-gray-300"
+						className=" inline-flex items-center  gap-2 bg-gray-700 cursor-pointer  text-white p-2 rounded-md border hover:bg-gray-800"
 					>
-						<UserPlusIcon className="h-6 w-6" />
+						<UserPlusIcon className="h-5 w-5" />
+						<span className="hidden lg:block text-xs">Crear Empleado</span>
 					</span>
 				</div>
 				<ul role="list" className="divide-y divide-gray-100">
@@ -101,7 +133,7 @@ export default function EmployeeList({ selectedAgency }) {
 							</li>
 						))
 					) : (
-						<Banner title={'No existen'} message={"empleados"}/>
+						<Banner title={"No existen"} message={"empleados"} />
 					)}
 				</ul>
 			</Card>

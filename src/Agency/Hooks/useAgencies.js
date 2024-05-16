@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { queryKeys } from "./queryKeys";
-import apiServices from "../Api/apiServices";
+import apiServices from "../Api";
 
 export const useFetchAgencies = () => {
 	return useQuery([queryKeys.fetchAgencies], () => apiServices.agencies.getAgencies());
@@ -47,8 +47,6 @@ export const useFetchEmployeesByAgencyId = (id) => {
 		apiServices.agencies.getEmployeesByAgencyId(id),
 	);
 };
-
-
 
 export const useFetchAgencyLoggedEmployee = (email) => {
 	return useQuery(

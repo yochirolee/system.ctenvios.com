@@ -3,13 +3,20 @@ import apiServices from "../Api/apiServices";
 import { queryKeys } from "./queryKeys";
 
 export const useFetchServices = () => {
-	return useQuery([queryKeys.fetchServices], () => apiServices.services.getServices());
+	return useQuery(["getServices"], () => apiServices.services.get());
 };
 
 export const useFetchServicesByAgencyId = (id) => {
 	return useQuery(
 		[queryKeys.fetchServicesByAgencyId, id],
-		() => apiServices.services.getServicesByAgencyId(id),
+		() => apiServices.services.getByAgencyId(id),
+		{ enabled: !!id },
+	);
+};
+export const useFetchServicesByProviderId = (id) => {
+	return useQuery(
+		[queryKeys.fetchServicesByProviderId, id],
+		() => apiServices.services.getServicesByProviderId(id),
 		{ enabled: !!id },
 	);
 };
@@ -17,9 +24,9 @@ export const useFetchServicesByAgencyId = (id) => {
 export const useCreateService = (setIsOpen) => {
 	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: (newService) => apiServices.services.createService(newService),
+		mutationFn: (newService) => apiServices.services.create(newService),
 		onSuccess: () => {
-			queryClient.invalidateQueries([queryKeys.fetchServicesProviders]);
+			queryClient.invalidateQueries(["getProviders"]);
 			setIsOpen(false);
 		},
 	});
@@ -30,7 +37,7 @@ export const useUpdateService = (setIsOpen) => {
 	return useMutation({
 		mutationFn: (service) => apiServices.services.updateService(service),
 		onSuccess: () => {
-			queryClient.invalidateQueries([queryKeys.fetchServicesProviders]);
+			queryClient.invalidateQueries(["getProviders"]);
 			setIsOpen(false);
 		},
 	});

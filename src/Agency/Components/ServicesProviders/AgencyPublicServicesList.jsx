@@ -8,7 +8,7 @@ export const AgencyPublicServicesList = ({ agency }) => {
 	const { data: services } = useFetchServicesByAgencyId(agency.id);
 
 	return (
-		<Card className=" lg:col-span-7  ">
+		<Card className="   ">
 			<h3 className="font-semibold my-2">Tarifas Publicas de la Agencia</h3>
 			{services?.map((service) =>
 				service?.isActive ? (

@@ -57,7 +57,7 @@ export default function SlideOver({ isOpen = false, setIsOpen, title, children }
 												{title}
 											</Dialog.Title>
 										</div>
-										<div className="relative mt-6 flex-1 px-4 sm:px-6">{children}</div>
+										<div className="relative  mt-6 flex-1 px-4 sm:px-6">{children}</div>
 									</div>
 								</Dialog.Panel>
 							</Transition.Child>

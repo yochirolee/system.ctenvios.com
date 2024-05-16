@@ -1,12 +1,15 @@
 import { useQuery } from "react-query";
-import { Fragment, } from "react";
+import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import apiServices from "../../Api/apiServices";
 
 export default function EmployessRolesSelect({ selected, setSelected }) {
-	const { data: roles, isLoading, isError } = useQuery("fetchRoles", ()=>apiServices.roles.getRoles());
-
+	const {
+		data: roles,
+		isLoading,
+		isError,
+	} = useQuery("fetchRoles", () => apiServices.roles.getRoles());
 	if (isLoading) return <div>Cargando...</div>;
 	if (isError) return <div>Hubo un error</div>;
 
@@ -14,7 +17,7 @@ export default function EmployessRolesSelect({ selected, setSelected }) {
 		<Listbox value={selected} onChange={setSelected}>
 			<div className="relative mt-1">
 				<Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-					<span className="block truncate">{!selected ? roles[1].name : selected?.name} </span>
+					<span className="block truncate">{!selected ? "Seleccione Rol" : selected?.name} </span>
 					<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
 						<ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
 					</span>
