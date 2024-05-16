@@ -6,7 +6,6 @@ import { CustomerRecieverDetails } from "./Components/CustomerRecieverDetails";
 import { InvoiceTitle } from "./Components/InvoiceTitle";
 import { PaymentForm } from "./Components/Payment/PaymentForm";
 import { PaymentHistory } from "./Components/Payment/PaymentHistory";
-import { InvoiceHistory } from "./Components/invoiceHistory";
 import { PrinterIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { WalletIcon } from "@heroicons/react/24/solid";
 import ReactToPrint from "react-to-print";
