@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import { DataTable } from "./Components/Table/data-table";
 import { columns } from "./Components/Table/columns";
 import { ComboBoxContainers } from "./Components/ComboBoxContainers";
-import { TrackingStats } from "./Components/trackingStats";
 import { Spinner } from "@/Agency/Components/ui/Spinner";
 import { Button } from "@/components/ui/button";
 import { File, ListFilter } from "lucide-react";
@@ -22,6 +21,7 @@ import { AlertDestructive } from "./Components/Alert";
 import { DatePickerForm } from "./Components/ContainerTab/DatePickerForm";
 import { trackingHooks } from "./hooks/useTracking";
 import { EventDetails } from "./Components/Events/EventDetails";
+import { TrackingStats } from "./Components/TrackingStats";
 
 export const TrackingContainerTab = () => {
 	const [selectedContainerId, setSelectedContainerId] = useState(null);
@@ -30,8 +30,6 @@ export const TrackingContainerTab = () => {
 		isLoading: isLoadingContainer,
 		isError,
 	} = trackingHooks.useFetchContainerById(selectedContainerId);
-
-
 
 	return (
 		<div>
