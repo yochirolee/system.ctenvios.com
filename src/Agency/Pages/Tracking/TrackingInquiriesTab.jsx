@@ -33,7 +33,7 @@ import { trackingHooks } from "./hooks/useTracking";
 export const TrackingInquiriesTab = () => {
 	const [selectedInvoice, setSelectedInvoice] = useState(null);
 
-	const { data, isLoading, isError } = trackingHooks.useFetchTrackingPackagesProblems();
+	const { data, isLoading, isError } = trackingHooks.useFetchIssues();
 
 	if (isLoading) return <div>Loading...</div>;
 	if (isError) return <div>Error...</div>;

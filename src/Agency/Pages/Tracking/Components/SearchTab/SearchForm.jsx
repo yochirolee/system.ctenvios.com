@@ -24,7 +24,7 @@ export const SearchForm = ({ changeSearchTerm, isLoading }) => {
 	};
 
 	return (
-		<header className="  z-30 border bg-red-500 h-14 items-center gap-4 border-b bg-background  sm:static sm:h-auto sm:border-0 sm:bg-transparent mb-4">
+		<header className="  border bg-red-500 h-14 items-center gap-4 border-b bg-background  sm:static sm:h-auto sm:border-0 sm:bg-transparent mb-4">
 			<div className="flex flex-col w-full gap-4 ">
 				<div className="grid gap-4">
 					<Card>

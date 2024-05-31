@@ -100,13 +100,13 @@ export const EventDetails = ({ hbl }) => {
 											{getIcon(event?.locationId)}
 											<div className="grid gap-1.5">
 												<div className="flex gap-2">
-													<div className="text-sm font-medium">{event?.location?.name}</div>
+													<div className="text-sm font-medium">{event?.locations?.name}</div>
 													<div className="text-[10px] text-gray-500 dark:text-gray-400">
-														{event?.status}
+														{event?.status?.name}
 													</div>
 												</div>
 												<div className="text-gray-500 text-xs dark:text-gray-400">
-													{formatDate(event?.createdAt)}
+													{formatDate(event?.updatedAt)}
 												</div>
 											</div>
 										</div>

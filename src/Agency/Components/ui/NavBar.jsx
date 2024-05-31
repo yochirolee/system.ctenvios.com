@@ -3,7 +3,6 @@ import { Dialog, Disclosure } from "@headlessui/react";
 import { ArrowDownTrayIcon, Bars3Icon, XMarkIcon, BellIcon } from "@heroicons/react/24/outline";
 import { Links } from "./Links";
 import { useAuth } from "../../../Auth/Hooks/useAuth";
-import { Search, SearchIcon } from "lucide-react";
 import { ModeToggle } from "./theme-toggle";
 import { Input } from "@/components/ui/input";
 
@@ -20,7 +19,7 @@ export default function NavBar({ session }) {
 				<div className="flex lg:flex-1">
 					<a href="#" className="-m-1.5 p-1.5">
 						<span className="sr-only">CTEnvios</span>
-						<img className="h-10 w-auto object-scale-down   " src="/ctelogo.png" alt="" />
+						<img className="h-10 w-auto object-scale-down   " src="/ctelogo.png" alt="Logo" />
 					</a>
 				</div>
 				<div className="flex lg:hidden">
@@ -37,15 +36,6 @@ export default function NavBar({ session }) {
 				<div className="hidden lg:flex lg:flex-1 lg:justify-end">
 					{true ? (
 						<div className="inline-flex gap-4 items-center">
-							<div className="relative ml-auto flex-1 md:grow-0">
-								<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-								<Input
-									type="search"
-									placeholder="Search..."
-									className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
-								/>
-							</div>
-
 							<a className="relative cursor-pointer">
 								<BellIcon className="w-6 h-6 text-gray-500 dark:text-white" />
 								<span className="absolute -top-1 left-2.5  w-4 h-4 rounded-full text-center  font-semibold text-xs bg-red-500 text-white">
@@ -76,11 +66,7 @@ export default function NavBar({ session }) {
 					<div className="flex items-center justify-between">
 						<a href="#" className="-m-1.5 p-1.5">
 							<span className="sr-only">CTEnvios</span>
-							<img
-								className="h-8 w-auto"
-								src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-								alt=""
-							/>
+							<img className="h-8 w-auto" src="/ctelogo.png" alt="Logo" />
 						</a>
 						<button
 							type="button"

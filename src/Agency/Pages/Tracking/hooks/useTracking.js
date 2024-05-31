@@ -38,10 +38,10 @@ export const trackingHooks = {
 			enabled: !!selectedContainerId,
 		});
 	},
-	useFetchTrackingPackagesProblems: () => {
+	useFetchIssues: () => {
 		return useQuery({
 			queryKey: "fetchTrackingPackagesProblems",
-			queryFn: apiTracking.tracking.getPackagesWithProblems,
+			queryFn: apiTracking.parcels.getIssues,
 		});
 	},
 	useCreateEventNote: () => {

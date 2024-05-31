@@ -120,6 +120,10 @@ export const apiTracking = {
 			const response = await axios.get(`parcels/invoice/${invoiceId}`);
 			return response.data;
 		},
+		getIssues: async () => {
+			const response = await axios.get(`parcels/issues`);
+			return response.data;
+		},
 	},
 };
 export default apiTracking;

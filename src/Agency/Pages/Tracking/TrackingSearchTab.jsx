@@ -8,7 +8,6 @@ import { NoEventDetails } from "./Components/Events/noEventDetails";
 export const TrackingSearchTab = () => {
 	const [search, setSearch] = useState("");
 	const { data: invoice, isError, isLoading } = useFetchByInvoiceOrHBL(search);
-	console.log(invoice, "invoice");
 	const [selectedHbl, setSelectedHbl] = useState(
 		invoice?.parcels[0]?.hbl ? invoice?.parcels[0]?.hbl : "",
 	);

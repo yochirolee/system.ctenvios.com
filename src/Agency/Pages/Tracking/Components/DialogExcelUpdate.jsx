@@ -10,14 +10,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import { FileSpreadsheet, FileUpIcon } from "lucide-react";
+import { FileBarChart2, FileSpreadsheet, FileUpIcon } from "lucide-react";
 import { ExcelUpload } from "./ContainerTab/ExcelUpload";
 export const DialogExcelUpdate = () => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button variant="ghost">
-					<FileSpreadsheet className="mr-2 h-4 w-4" /> Update from Excel
+					<FileBarChart2 className="mr-2 h-4 w-4 text-green-700" /> Update from Excel
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-1/3 min-w-max ">

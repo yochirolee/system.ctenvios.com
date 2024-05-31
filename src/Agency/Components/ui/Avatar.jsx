@@ -6,6 +6,7 @@ export default function Avatar({ avatarUrl }) {
 					className={`inline-block aspect-auto   rounded-full ring-2 ring-white  m-2 h-20 w-auto`}
 					src={avatarUrl}
 					alt="Avatar"
+					
 				/>
 			</div>
 		</>

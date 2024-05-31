@@ -20,8 +20,9 @@ import { DialogExcelUpdate } from "./Components/DialogExcelUpdate";
 import { AlertDestructive } from "./Components/Alert";
 import { DatePickerForm } from "./Components/ContainerTab/DatePickerForm";
 import { trackingHooks } from "./hooks/useTracking";
-import { EventDetails } from "./Components/Events/EventDetails";
 import { TrackingStats } from "./Components/TrackingStats";
+import { ExportToExcelButton } from "./Components/ContainerTab/ExportToExcelButton";
+import { DonutChartParcelsTypes } from "./Components/ContainerTab/DonutChartParcelsTypes";
 
 export const TrackingContainerTab = () => {
 	const [selectedContainerId, setSelectedContainerId] = useState(null);
@@ -33,7 +34,7 @@ export const TrackingContainerTab = () => {
 
 	return (
 		<div>
-			<div className="flex justify-between items-center bg-muted/20 p-4 rounded-md">
+			<div className="flex flex-col md:flex-row justify-between items-center bg-muted/20 p-4 rounded-md">
 				<ComboBoxContainers value={selectedContainerId} setValue={setSelectedContainerId} />
 
 				<div>
@@ -68,36 +69,37 @@ export const TrackingContainerTab = () => {
 									</div>
 								</div>
 							)}
-
-							<div className="">
-								<div className=" flex justify-between py-2">
-									<div className="ml-auto flex items-center gap-2">
-										<DropdownMenu>
-											<DropdownMenuTrigger asChild>
-												<Button variant="outline" size="sm" className="h-8 gap-1">
-													<ListFilter className="h-3.5 w-3.5" />
-													<span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-														Filter
-													</span>
-												</Button>
-											</DropdownMenuTrigger>
-											<DropdownMenuContent align="end">
-												<DropdownMenuLabel>Filter by</DropdownMenuLabel>
-												<DropdownMenuSeparator />
-												<DropdownMenuCheckboxItem checked>Active</DropdownMenuCheckboxItem>
-												<DropdownMenuCheckboxItem>Draft</DropdownMenuCheckboxItem>
-												<DropdownMenuCheckboxItem>Archived</DropdownMenuCheckboxItem>
-											</DropdownMenuContent>
-										</DropdownMenu>
-										<Button size="sm" variant="outline" className="h-8 gap-1">
-											<File className="h-3.5 w-3.5" />
-											<span className="sr-only sm:not-sr-only sm:whitespace-nowrap">Export</span>
-										</Button>
+							<div className="grid grid-cols-12 gap-2 grid-flow-col">
+								<div className="col-span-10 ">
+									<div className=" flex justify-between py-2">
+										<div className="ml-auto flex items-center gap-2">
+											<DropdownMenu>
+												<DropdownMenuTrigger asChild>
+													<Button variant="outline" size="sm" className="h-8 gap-1">
+														<ListFilter className="h-3.5 w-3.5" />
+														<span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+															Filter
+														</span>
+													</Button>
+												</DropdownMenuTrigger>
+												<DropdownMenuContent align="end">
+													<DropdownMenuLabel>Filter by</DropdownMenuLabel>
+													<DropdownMenuSeparator />
+													<DropdownMenuCheckboxItem checked>Active</DropdownMenuCheckboxItem>
+													<DropdownMenuCheckboxItem>Draft</DropdownMenuCheckboxItem>
+													<DropdownMenuCheckboxItem>Archived</DropdownMenuCheckboxItem>
+												</DropdownMenuContent>
+											</DropdownMenu>
+											<ExportToExcelButton data={container.data} fileName={"test"} />
+										</div>
 									</div>
-								</div>
 
-								<DataTable columns={columns} data={container.data} />
-							</div>
+									<DataTable columns={columns} data={container.data} />
+								</div>
+								
+							</div><div className="col-span-2">
+									<DonutChartParcelsTypes/>
+								</div>
 							{/* <div>
 									<EventDetails currentEvent={"CTE230624123854"} />
 								</div> */}
