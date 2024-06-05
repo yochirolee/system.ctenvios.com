@@ -2,7 +2,7 @@ import axios from "axios";
 
 const development_URL = "http://localhost:3000/api/v1";
 const production_URL = "https://tracking.ctenvios.com/api/v1";
-axios.defaults.baseURL = development_URL;
+axios.defaults.baseURL = production_URL;
 const apiKey = "c3VwYmFzZWNyZXQ=";
 axios.defaults.headers.common = { "api-key": apiKey };
 

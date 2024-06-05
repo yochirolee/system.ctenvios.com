@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@clerk/clerk-react": "^4.21.1",
+		"@github/relative-time-element": "^4.4.0",
 		"@headlessui/react": "^1.7.13",
 		"@heroicons/react": "^2.0.18",
 		"@hookform/resolvers": "^3.3.4",

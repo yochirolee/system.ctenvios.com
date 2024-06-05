@@ -41,6 +41,8 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export const SearchResult = ({ invoice, setSelectedHbl }) => {
 	if (!invoice || Object.keys(invoice).length < 1) return null;
+
+	console.log(invoice);
 	return (
 		<Card className="overflow-hidden xl:col-span-2">
 			<CardHeader className="flex flex-row  items-center bg-muted/50">
@@ -213,12 +215,15 @@ export const SearchResult = ({ invoice, setSelectedHbl }) => {
 											{getIcon(pack?.events[pack?.events?.length - 1]?.locationId)}
 											{pack?.location}
 										</Badge>
-										<time className="flex items-center text-xs font-bold pr-2">
-											{pack?.events[pack?.events.length - 1]?.updatedAt &&
-												format(
-													parseISO(pack?.events[pack?.events.length - 1]?.updatedAt),
-													"dd/MM/yyyy",
-												)}
+										<time className="flex items-center text-xs  pr-2">
+											<span className="mx-2 ">Facturado hace:</span>
+											<div className="font-bold">
+												<relative-time
+													format="relative"
+													tense="past"
+													datetime={pack?.events[0]?.updatedAt}
+												></relative-time>
+											</div>
 										</time>
 									</div>
 								}
@@ -242,8 +247,14 @@ export const SearchResult = ({ invoice, setSelectedHbl }) => {
 												<p className="text-[10px] text-slate-600">{event?.status?.name}</p>
 											</div>
 
-											<time className="flex items-center text-[10px]">
+											<time className="flex flex-col items-center text-[10px]">
 												{event?.updatedAt && format(parseISO(event?.updatedAt), "dd/MM/yyyy")}
+												{/* <time className="flex items-center text-xs font-bold pr-2">
+													<relative-time
+														format="relative"
+														datetime={format(parseISO(event?.updatedAt), "yyyy-MM-dd")}
+													></relative-time>
+												</time> */}
 											</time>
 										</div>
 									))}

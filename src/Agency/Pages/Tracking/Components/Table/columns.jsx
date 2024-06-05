@@ -53,7 +53,6 @@ export const columns = [
 				<Button
 					variant="ghost"
 					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-					
 				>
 					Invoice
 					<ArrowUpDownIcon className="ml-2 h-4 w-4" />
@@ -130,6 +129,33 @@ export const columns = [
 					{row.original?.events[row.original?.events.length - 1]?.status?.name ?? "No status"}
 				</span>
 			</div>
+		),
+	},
+
+	/*
+	<relative-time datetime="2014-04-01T16:30:00-08:00">
+  April 1, 2014
+</relative-time>
+	*/
+	{
+		id: "invoiceDate",
+		header: ({ column }) => {
+			return (
+				<Button
+					variant="ghost"
+					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+				>
+					DayPassed
+					<ArrowUpDownIcon className="ml-2 h-4 w-4" />
+				</Button>
+			);
+		},
+		cell: ({ row }) => (
+			<relative-time
+			format="relative"
+			
+				datetime={row.original?.events[row.original?.events.length - 1]?.updatedAt}
+			></relative-time>
 		),
 	},
 	{

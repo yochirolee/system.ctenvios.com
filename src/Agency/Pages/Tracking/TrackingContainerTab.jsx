@@ -70,7 +70,7 @@ export const TrackingContainerTab = () => {
 								</div>
 							)}
 							<div className="grid grid-cols-12 gap-2 grid-flow-col">
-								<div className="col-span-10 ">
+								<div className="col-span-12 ">
 									<div className=" flex justify-between py-2">
 										<div className="ml-auto flex items-center gap-2">
 											<DropdownMenu>
